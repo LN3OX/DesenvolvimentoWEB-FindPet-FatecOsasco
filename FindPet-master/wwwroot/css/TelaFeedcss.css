@@ -1,0 +1,234 @@
+
+/* Estilização geral */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #E1EBF0;
+
+}
+
+
+.hot-bar {
+    display: flex;
+    justify-content: space-between; /* Espalha a logo e os links à direita e esquerda */
+    align-items: center; /* Alinha os itens verticalmente */
+    background-color: #E1EBF0; /* Cor de fundo */
+    color: black; /* Cor do texto */
+    height: 50px; /* Altura da barra */
+    position: fixed; /* Fixa a barra no topo */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ocupa toda a largura da tela */
+    z-index: 1000; /* Garante que fique sobre outros elementos */
+    border-bottom: 3px solid #88A3E2; /* Linha azul na parte inferior */
+    padding: 0 15px; /* Espaçamento interno */
+}
+
+/* Contêiner para logo e texto Find Pet no lado esquerdo */
+.left-side {
+    display: flex; /* Coloca logo e texto ao lado um do outro */
+    align-items: center; /* Alinha verticalmente */
+}
+
+.hot-bar-logo {
+    height: 50px; /* Define a altura da logo */
+    width: auto; /* Mantém a proporção da imagem */
+    margin-right: 10px; /* Espaçamento entre a logo e o texto */
+}
+
+.find-pet {
+    font-size: 18px; /* Define o tamanho da fonte */
+    font-weight: bold; /* Torna o texto em negrito */
+    color: black; /* Cor do texto */
+}
+
+/* Contêiner para os itens da barra (alinhados à direita) */
+.right-side {
+    display: flex; /* Organiza os itens em linha */
+    align-items: center; /* Alinha os itens verticalmente */
+    
+}
+
+.hot-bar-item {
+    margin: 0 15px; /* Espaçamento entre os itens */
+    cursor: pointer;
+}
+
+    /* Caixa azul ao redor do item "Login" */
+    .hot-bar-item.login a {
+        padding: 5px 15px; /* Adiciona preenchimento ao redor do link */
+        border-radius: 5px; /* Cantos arredondados */
+        background-color: #88A3E2; /* Cor de fundo azul claro */
+        color: black; /* Cor do texto */
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+        .hot-bar-item.login a:hover {
+            background-color: #1E90FF; /* Cor de fundo quando passar o mouse */
+            color: black; /* Cor do texto ao passar o mouse */
+        }
+
+    .hot-bar-item a {
+        text-decoration: none;
+        color: black;
+        font-size: 16px;
+    }
+
+        .hot-bar-item a:hover {
+            color: #007bff; /* Muda a cor do texto ao passar o mouse */
+        }
+
+
+
+/* Barra horizontal (navbar) */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o conteúdo horizontalmente */
+    background-color: #333;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Container da barra de pesquisa */
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border: 2px solid #ddd;
+    border-radius: 250px;
+    padding: 1px 10px;
+    width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateX(20px);
+}
+
+/* Campo de entrada */
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 5px;
+}
+
+/* Botão de pesquisa */
+.search-button {
+    background-color: #ffffff;
+    color: white;
+    border: none;
+    padding: 1px 12px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .search-button:hover {
+        background-color: #88A3E2;
+    }
+
+
+.botao {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    position: fixed; /* Garante que o botão fique fixo na tela */
+    top: 60px; /* Ajuste de acordo com a altura da sua barra superior */
+    left: 0;
+    right: 0;
+    z-index: 999; /* Garante que o botão esteja acima de outros elementos */
+}
+
+
+.iniciar-publicacao {
+    padding: 4px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #88A3E2;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+
+.botao:hover {
+    transform: translateY(-8px);
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D9D9D9;
+    border-radius: 50px;
+    height: 700px;
+    width: 500px;
+    position: relative;
+    overflow: hidden; /* Garante que nada ultrapasse o container */
+}
+
+    /* Estilo para a imagem */
+    .container img {
+        max-width: 90%; /* A imagem ficará no máximo 90% da largura do container */
+        max-height: 30%; /* A imagem ficará no máximo 90% da altura do container */
+        object-fit: contain; /* Garante que a imagem mantenha sua proporção */
+    }
+
+/* Estilo dos botões-ícones */
+.item-pub {
+    background-color: #88A3E2; /* Cor de fundo */
+    color: #fff; /* Cor do ícone */
+    font-size: 24px; /* Tamanho do ícone */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Torna o botão circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+    margin: 10px; /* Espaçamento entre os botões */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+    /* Efeito ao passar o mouse */
+    .item-pub:hover {
+        transform: scale(1.1); /* Aumenta o botão ligeiramente */
+        background-color: #6b8cd1; /* Escurece um pouco o fundo */
+    }
+
+/* Posicionamento abaixo do container */
+.icones-abaixo {
+    display: flex;
+    gap: 15px; /* Espaçamento horizontal entre os botões */
+    position: absolute; /* Faz os ícones ficarem posicionados em relação ao container */
+    bottom: 20px; /* Distância da parte inferior do container */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajuste para centralizar os ícones */
+}
+
+
+
+
+
+.lado-direito {
+    position: absolute; /* Para posicionamento relativo ao container */
+    bottom: 20px; /* Ajuste para o quanto deseja afastar do fundo */
+    right: 50px; /* Ajuste para o quanto deseja afastar do lado esquerdo */
+    display: flex; /* Coloca os itens em linha */
+   
+}
+
+.mensagem {
+    font-size: 24px; /* Ajuste o tamanho dos ícones conforme necessário */
+    color: #333;
+}

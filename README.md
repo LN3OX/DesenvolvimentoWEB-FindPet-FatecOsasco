@@ -70,11 +70,17 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues, sugerir 
     </td>
     <td align="center">
       <a href="[https://github.com/usuario2](https://github.com/bibernal)">
-        <img src="[https://avatars.githubusercontent.com/u/70244572?v=4" width="100px;" alt="Garbiel Rojas"/><br />
+        <img src="https://avatars.githubusercontent.com/u/70244572?v=4" width="100px;" alt="Garbiel Rojas"/><br />
         <sub><b>Garbiel Rojas</b></sub>
       </a>
     </td>
-    <!-- Adicione mais membros aqui -->
+    <td align="center">
+      <a href="[https://github.com/usuario2](https://github.com/bibernal)](https://github.com/p3drodosanjos)">
+        <img src="https://avatars.githubusercontent.com/u/108707896?v=4" width="100px;" alt="Pedro dos Anjos"/><br />
+        <sub><b>Pedro dos Anjos</b></sub>
+      </a>
+    </td>
+    <!-- Adicionar mais membros-->
   </tr>
 </table>
 

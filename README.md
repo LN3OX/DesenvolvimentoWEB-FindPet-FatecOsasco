@@ -16,7 +16,7 @@ Seu propósito é facilitar o reencontro entre tutores que perderam seus animais
 
 ---
 
-## 🤖: Tecnologias Utilizadas
+## 🤖 Tecnologias Utilizadas
 
 - .NET / C#
 - HTML

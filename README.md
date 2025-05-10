@@ -58,7 +58,7 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues, sugerir 
 
 ---
 
-## 👥 Time
+## 👥 Equipe 
 
 <table>
   <tr>

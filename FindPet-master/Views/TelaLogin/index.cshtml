@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Find Pet</title>
+    <link rel="stylesheet" href="/css/TelaLogincss.css">
+    <script>
+        // Função para redirecionar ao clicar no botão
+        function redirecionar(event) {
+            event.preventDefault(); // Evita o envio do formulário padrão
+            window.location.href = "/TelaFeed"; // Redireciona para a página desejada
+        }
+    </script>
+</head>
+<body>
+    <!-- Barra de navegação -->
+    <div class="hot-bar">
+        <div class="left-side">
+            <img src="/imagem/logo_find_pet.webp" alt="Logo" class="hot-bar-logo">
+            <div class="find-pet">Find Pet</div>
+        </div>
+        <div class="right-side">
+            <div class="hot-bar-item login" onclick="location.href='TelaCadastro';"><a>Cadastre-se</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <main class="main-content">
+        <!-- Imagem à esquerda -->
+        <div class="image-container">
+            <img src="/Imagem/cachorroedogg.png" alt="Homem com cachorro">
+        </div>
+
+        <!-- Caixa de login -->
+        <div class="login-container login-box">
+            <h1>Faça seu Login</h1>
+            <form onsubmit="redirecionar(event)" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="Email" class="form-control" placeholder="Digite seu email" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="Senha" class="form-control" placeholder="Digite sua senha" required>
+                </div>
+                <button type="submit" class="login-button">Entrar</button>
+            </form>
+            <div class="login-options">
+                <a href="/TelaCadastro/Index" class="register-link">Não tem uma conta? Cadastre-se</a>
+                <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Find Pet. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="/sobre" class="footer-link">Sobre Nós</a>
+                <a href="/contato" class="footer-link">Contato</a>
+                <a href="/politica-de-privacidade" class="footer-link">Política de Privacidade</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+

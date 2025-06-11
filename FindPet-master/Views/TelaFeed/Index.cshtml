@@ -1,0 +1,397 @@
+@using findPet.Models
+@model List<TelaFeedModel>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed - Find Pet</title>
+    <link rel="stylesheet" href="/css/TelaFeedcss.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .publicacao {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+        }
+        
+        .publicacao:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+        
+        .publicacao-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .publicacao-info h3 {
+            margin: 0 0 5px 0;
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .publicacao-detalhes {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0;
+        }
+        
+        .publicacao-imagem {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .publicacao-conteudo {
+            padding: 15px 20px;
+        }
+        
+        .publicacao-legenda {
+            margin-bottom: 15px;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        .publicacao-acoes {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid #eee;
+        }
+        
+        .acao-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: none;
+            background: none;
+            color: #666;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+        
+        .acao-btn:hover {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .acao-btn.curtido {
+            color: #e74c3c;
+        }
+        
+        .acao-btn.compartilhado {
+            color: #3498db;
+        }
+        
+        .comentarios-section {
+            border-top: 1px solid #eee;
+            padding: 15px 20px;
+            background-color: #fafafa;
+        }
+        
+        .comentario {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border-left: 3px solid #3498db;
+        }
+        
+        .comentario-autor {
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+        }
+        
+        .comentario-texto {
+            margin: 5px 0;
+            color: #555;
+        }
+        
+        .comentario-data {
+            font-size: 11px;
+            color: #999;
+        }
+        
+        .comentario-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .comentario-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+        
+        .comentario-btn {
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .comentario-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .data-publicacao {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        .sem-publicacoes {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="hot-bar">
+            <div class="left-side">
+                <img src="/imagem/logo_find_pet.webp" alt="Logo" class="hot-bar-logo">
+                <div class="find-pet">Find Pet</div>
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Pesquisar...">
+                <button class="search-button">🔍</button>
+            </div>
+
+            <div class="right-side">
+                <div class="hot-bar-item"><i class="bi bi-chat" style="font-size:30px"></i></div>
+                <div class="hot-bar-item"><i class="bi bi-bell" style="font-size:30px"></i></div>
+                <div class="hot-bar-item login" onclick="location.href='TelaLogin';"><a>Sair</a></div>
+            </div>
+        </div>
+
+        <div class="botao">
+            <button class="iniciar-publicacao" onclick="location.href='TelaPublicacao';">Iniciar Publicação</button>
+        </div>
+
+        <div class="container">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var publicacao in Model)
+                {
+                    <div class="publicacao" data-id="@publicacao.Id">
+                        <div class="publicacao-header">
+                            <div class="publicacao-info">
+                                <h3>@publicacao.Nome</h3>
+                                <div class="publicacao-detalhes">
+                                    <strong>Raça:</strong> @publicacao.Raca | 
+                                    <strong>Cor:</strong> @publicacao.Cor | 
+                                    <strong>Porte:</strong> @publicacao.Porte
+                                </div>
+                                <div class="publicacao-detalhes">
+                                    <strong>Local do desaparecimento:</strong> @publicacao.LocalDesaparecimento
+                                </div>
+                                <div class="publicacao-detalhes">
+                                    <strong>Data do desaparecimento:</strong> @publicacao.DataDesaparecimento.ToString("dd/MM/yyyy")
+                                </div>
+                                @if (!string.IsNullOrEmpty(publicacao.Chip))
+                                {
+                                    <div class="publicacao-detalhes">
+                                        <strong>Chip:</strong> @publicacao.Chip
+                                    </div>
+                                }
+                                <div class="data-publicacao">
+                                    Publicado em @publicacao.DataPublicacao.ToString("dd/MM/yyyy HH:mm")
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(publicacao.ImageFileName))
+                        {
+                            <img src="/Imagem/@publicacao.ImageFileName" alt="Foto do pet" class="publicacao-imagem">
+                        }
+
+                        <div class="publicacao-conteudo">
+                            @if (!string.IsNullOrEmpty(publicacao.Legenda))
+                            {
+                                <div class="publicacao-legenda">@publicacao.Legenda</div>
+                            }
+
+                            <div class="publicacao-acoes">
+                                <button class="acao-btn curtir-btn" data-id="@publicacao.Id">
+                                    <i class="fa-solid fa-paw"></i>
+                                    <span class="curtidas-count">@publicacao.Curtidas</span>
+                                </button>
+                                <button class="acao-btn comentar-btn" data-id="@publicacao.Id">
+                                    <i class="fa-solid fa-comment"></i>
+                                    <span class="comentarios-count">@publicacao.Comentarios.Count</span>
+                                </button>
+                                <button class="acao-btn compartilhar-btn" data-id="@publicacao.Id">
+                                    <i class="fa-solid fa-share"></i>
+                                    <span class="compartilhamentos-count">@publicacao.Compartilhamentos</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="comentarios-section" id="comentarios-@publicacao.Id" style="display: none;">
+                            <div class="comentarios-lista">
+                                @foreach (var comentario in publicacao.Comentarios)
+                                {
+                                    <div class="comentario">
+                                        <div class="comentario-autor">@comentario.NomeUsuario</div>
+                                        <div class="comentario-texto">@comentario.Texto</div>
+                                        <div class="comentario-data">@comentario.DataComentario.ToString("dd/MM/yyyy HH:mm")</div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="comentario-form">
+                                <input type="text" class="comentario-input" placeholder="Escreva um comentário..." data-id="@publicacao.Id">
+                                <button class="comentario-btn" data-id="@publicacao.Id">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="sem-publicacoes">
+                    <h3>Nenhuma publicação encontrada</h3>
+                    <p>Seja o primeiro a publicar sobre um pet perdido!</p>
+                </div>
+            }
+        </div>
+    </main>
+
+    <script>
+        $(document).ready(function() {
+            // Função para curtir
+            $('.curtir-btn').click(function() {
+                var publicacaoId = $(this).data('id');
+                var btn = $(this);
+                
+                $.post('/TelaFeed/Curtir', { publicacaoId: publicacaoId })
+                    .done(function(data) {
+                        if (data.success) {
+                            btn.find('.curtidas-count').text(data.curtidas);
+                            btn.addClass('curtido');
+                            
+                            // Animação de feedback
+                            btn.find('i').addClass('fa-bounce');
+                            setTimeout(function() {
+                                btn.find('i').removeClass('fa-bounce');
+                            }, 1000);
+                        }
+                    })
+                    .fail(function() {
+                        alert('Erro ao curtir a publicação.');
+                    });
+            });
+
+            // Função para mostrar/ocultar comentários
+            $('.comentar-btn').click(function() {
+                var publicacaoId = $(this).data('id');
+                var comentariosSection = $('#comentarios-' + publicacaoId);
+                
+                if (comentariosSection.is(':visible')) {
+                    comentariosSection.slideUp();
+                } else {
+                    comentariosSection.slideDown();
+                }
+            });
+
+            // Função para enviar comentário
+            $('.comentario-btn').click(function() {
+                var publicacaoId = $(this).data('id');
+                var input = $('.comentario-input[data-id="' + publicacaoId + '"]');
+                var textoComentario = input.val().trim();
+                
+                if (textoComentario === '') {
+                    alert('Por favor, escreva um comentário.');
+                    return;
+                }
+
+                $.post('/TelaFeed/Comentar', { 
+                    publicacaoId: publicacaoId, 
+                    textoComentario: textoComentario,
+                    nomeUsuario: 'Usuário'
+                })
+                .done(function(data) {
+                    if (data.success) {
+                        // Atualiza contador
+                        $('.comentar-btn[data-id="' + publicacaoId + '"] .comentarios-count').text(data.totalComentarios);
+                        
+                        // Adiciona novo comentário à lista
+                        var novoComentarioHtml = '<div class="comentario">' +
+                            '<div class="comentario-autor">' + data.comentario.nomeUsuario + '</div>' +
+                            '<div class="comentario-texto">' + data.comentario.texto + '</div>' +
+                            '<div class="comentario-data">' + new Date().toLocaleString('pt-BR') + '</div>' +
+                            '</div>';
+                        
+                        $('#comentarios-' + publicacaoId + ' .comentarios-lista').append(novoComentarioHtml);
+                        input.val('');
+                    }
+                })
+                .fail(function() {
+                    alert('Erro ao enviar comentário.');
+                });
+            });
+
+            // Permitir enviar comentário com Enter
+            $('.comentario-input').keypress(function(e) {
+                if (e.which == 13) {
+                    var publicacaoId = $(this).data('id');
+                    $('.comentario-btn[data-id="' + publicacaoId + '"]').click();
+                }
+            });
+
+            // Função para compartilhar
+            $('.compartilhar-btn').click(function() {
+                var publicacaoId = $(this).data('id');
+                var btn = $(this);
+                
+                $.post('/TelaFeed/Compartilhar', { publicacaoId: publicacaoId })
+                    .done(function(data) {
+                        if (data.success) {
+                            btn.find('.compartilhamentos-count').text(data.compartilhamentos);
+                            btn.addClass('compartilhado');
+                            
+                            // Animação de feedback
+                            btn.find('i').addClass('fa-spin');
+                            setTimeout(function() {
+                                btn.find('i').removeClass('fa-spin');
+                            }, 1000);
+                            
+                            alert('Publicação compartilhada com sucesso!');
+                        }
+                    })
+                    .fail(function() {
+                        alert('Erro ao compartilhar a publicação.');
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
+
